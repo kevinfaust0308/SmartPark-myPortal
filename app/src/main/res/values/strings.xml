@@ -1,0 +1,8 @@
+<resources>
+    <string name="app_name">SmartPark-myPortal</string>
+    <string name="drawer_open"/>
+    <string name="drawer_close"/>
+    <string name="UserData">UserData</string>
+    <string name="ParkingLots">ParkingLots</string>
+    <string name="ParkingLotQRCodes">ParkingLotQRCodes</string>
+</resources>

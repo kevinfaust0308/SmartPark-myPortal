@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              android:layout_width="match_parent"
+              android:layout_height="match_parent"
+              android:background="@color/md_blue_700"
+              android:orientation="vertical">
+
+    <LinearLayout
+        android:padding="16dp"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@drawable/dark_gradient"
+        android:orientation="vertical">
+
+        <TextView
+            android:gravity="center"
+            android:textSize="20sp"
+            android:layout_marginBottom="5dp"
+            android:layout_marginTop="5dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Add New Lot"
+            android:padding="10dp"
+            android:textColor="@color/md_white_1000"
+            />
+
+        <EditText
+            android:layout_marginBottom="5dp"
+            android:layout_marginTop="5dp"
+            android:id="@+id/name_text"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Name"
+            android:inputType="text"
+            android:maxLines="1"
+            android:padding="10dp"
+            android:textColor="@color/md_white_1000"
+            android:textColorHint="@color/md_white_1000"/>
+
+        <EditText
+            android:layout_marginBottom="5dp"
+            android:layout_marginTop="5dp"
+            android:id="@+id/max_spots_text"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Max Spots"
+            android:inputType="number"
+            android:maxLines="1"
+            android:padding="10dp"
+            android:textColor="@color/md_white_1000"
+            android:textColorHint="@color/md_white_1000"/>
+
+        <EditText
+            android:layout_marginBottom="5dp"
+            android:layout_marginTop="5dp"
+            android:id="@+id/hourly_price_text"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Hourly Price (dollars)"
+            android:inputType="numberDecimal"
+            android:maxLines="1"
+            android:padding="10dp"
+            android:textColor="@color/md_white_1000"
+            android:textColorHint="@color/md_white_1000"/>
+
+        <EditText
+            android:layout_marginBottom="5dp"
+            android:layout_marginTop="5dp"
+            android:id="@+id/max_time_text"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Maximum Time (hrs)"
+            android:inputType="numberDecimal"
+            android:maxLines="1"
+            android:padding="10dp"
+            android:textColor="@color/md_white_1000"
+            android:textColorHint="@color/md_white_1000"/>
+
+        <Button
+            android:id="@+id/create_parking_lot_btn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:layout_margin="15dp"
+            android:background="@color/md_teal_200"
+            android:padding="15dp"
+            android:text="create lot"
+            android:textColor="#ffffffff"/>
+
+    </LinearLayout>
+</LinearLayout>

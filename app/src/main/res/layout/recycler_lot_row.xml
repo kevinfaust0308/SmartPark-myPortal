@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--android:background="#22E3F2FD"-->
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              android:layout_width="match_parent"
+              android:layout_height="wrap_content"
+              android:background="@color/md_blue_900"
+              android:orientation="vertical"
+              android:layout_marginBottom="4dp"
+              android:padding="15dp">
+
+    <TextView
+        android:id="@+id/name"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingBottom="5dp"
+        android:text="Name"
+        android:textColor="@color/md_white_1000"
+        android:textSize="25sp"/>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="horizontal">
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="2"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/spots"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:paddingBottom="5dp"
+                android:paddingTop="5dp"
+                android:text="Spots"
+                android:textColor="@color/md_white_1000"
+                android:textSize="17sp"/>
+
+            <TextView
+                android:id="@+id/max_time"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:paddingBottom="5dp"
+                android:paddingTop="5dp"
+                android:text="Max Time"
+                android:textColor="@color/md_white_1000"
+                android:textSize="17sp"/>
+
+            <TextView
+                android:id="@+id/hourly_charge"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:paddingTop="5dp"
+                android:text="Hourly $"
+                android:textColor="@color/md_white_1000"
+                android:textSize="17sp"/>
+
+            <TextView
+                android:id="@+id/accuracy"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:paddingTop="5dp"
+                android:text="Accuracy: (x total reads)"
+                android:textColor="@color/md_white_1000"
+                android:textSize="17sp"/>
+
+        </LinearLayout>
+
+        <ImageView
+            android:layout_gravity="center"
+            android:src="@drawable/parking"
+            android:scaleType="fitCenter"
+            android:id="@+id/qr_code_image"
+            android:layout_width="0dp"
+            android:layout_height="70dp"
+            android:layout_weight="1"/>
+
+    </LinearLayout>
+
+</LinearLayout>
