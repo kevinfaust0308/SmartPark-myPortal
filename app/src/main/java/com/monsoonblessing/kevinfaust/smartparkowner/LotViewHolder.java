@@ -1,9 +1,12 @@
 package com.monsoonblessing.kevinfaust.smartparkowner;
 
 import android.content.Context;
+import android.content.Intent;
+import android.os.Bundle;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -16,11 +19,12 @@ import com.squareup.picasso.Picasso;
 public class LotViewHolder extends RecyclerView.ViewHolder {
 
     private TextView nameTV;
-    public TextView spotsTV;
+    private TextView spotsTV;
     private TextView maxTimeTV;
     private TextView hourlyChargeTV;
     private TextView accuracyTV;
     private ImageView QRImage;
+    public Button viewLogBtn;
 
     public LotViewHolder(View itemView) {
         super(itemView);
@@ -30,6 +34,7 @@ public class LotViewHolder extends RecyclerView.ViewHolder {
         hourlyChargeTV = (TextView) itemView.findViewById(R.id.hourly_charge);
         accuracyTV = (TextView) itemView.findViewById(R.id.accuracy);
         QRImage = (ImageView) itemView.findViewById(R.id.qr_code_image);
+        viewLogBtn = (Button) itemView.findViewById(R.id.view_log_button);
     }
 
     public void setNameTV(String name) {

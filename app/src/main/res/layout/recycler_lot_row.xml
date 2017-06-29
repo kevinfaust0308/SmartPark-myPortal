@@ -12,12 +12,13 @@
         android:id="@+id/name"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:paddingBottom="5dp"
         android:text="Name"
         android:textColor="@color/md_white_1000"
         android:textSize="25sp"/>
 
     <LinearLayout
+        android:layout_marginTop="5dp"
+        android:layout_marginBottom="10dp"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="horizontal">
@@ -78,5 +79,14 @@
             android:layout_weight="1"/>
 
     </LinearLayout>
+
+    <Button
+        android:id="@+id/view_log_button"
+        android:layout_gravity="center_horizontal"
+        android:background="@color/md_teal_200"
+        android:textColor="#ffffffff"
+        android:layout_width="100dp"
+        android:text="View Log"
+        android:layout_height="30dp"/>
 
 </LinearLayout>

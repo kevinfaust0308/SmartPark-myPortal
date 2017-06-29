@@ -89,7 +89,19 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
         firebaseRecyclerAdapter = new FirebaseRecyclerAdapter<Lot, LotViewHolder>(Lot.class, R.layout.recycler_lot_row, LotViewHolder.class, mUserParkingLotsDatabaseRef) {
             @Override
-            public void populateViewHolder(LotViewHolder lotViewHolder, Lot lot, int position) {
+            public void populateViewHolder(LotViewHolder lotViewHolder, Lot lot, final int position) {
+
+                lotViewHolder.viewLogBtn.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        Intent i = new Intent(MainActivity.this, VehicleLogActivity.class);
+                        final DatabaseReference ref = firebaseRecyclerAdapter.getRef(position);
+                        String parkingLotId = ref.getKey();
+                        i.putExtra("parkingLotId", parkingLotId);
+                        startActivity(i);
+                    }
+                });
+
 
                 // setting fields in a recyclerview row
 
