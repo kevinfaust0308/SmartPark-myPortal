@@ -4,44 +4,41 @@
               android:layout_width="match_parent"
               android:layout_height="wrap_content"
               android:layout_marginBottom="4dp"
-              android:background="@color/md_blue_900"
+              android:background="@color/md_blue_700"
               android:orientation="vertical"
               android:padding="15dp">
 
     <TextView
-        android:padding="3dp"
+        android:drawableLeft="@drawable/license_plate"
+        android:drawablePadding="6dp"
+        android:padding="4dp"
         android:id="@+id/plate_number"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="Plate number here"
         android:textColor="@color/md_white_1000"
-        android:textSize="20sp"/>
+        android:textSize="17sp"/>
 
     <TextView
-        android:padding="3dp"
-        android:id="@+id/in_time"
+        android:drawableLeft="@drawable/calendar_with_clock"
+        android:drawablePadding="6dp"
+        android:padding="4dp"
+        android:id="@+id/datetime"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="time_in"
+        android:text="July 3, 2017"
         android:textColor="@color/md_white_1000"
-        android:textSize="20sp"/>
+        android:textSize="17sp"/>
 
     <TextView
-        android:padding="3dp"
-        android:id="@+id/out_time"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="time_out"
-        android:textColor="@color/md_white_1000"
-        android:textSize="20sp"/>
-
-    <TextView
-        android:padding="3dp"
+        android:drawableLeft="@drawable/bullseye"
+        android:drawablePadding="6dp"
+        android:padding="4dp"
         android:id="@+id/accuracy"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="accuracy"
+        android:text="Accuracy"
         android:textColor="@color/md_white_1000"
-        android:textSize="20sp"/>
+        android:textSize="17sp"/>
 
 </LinearLayout>

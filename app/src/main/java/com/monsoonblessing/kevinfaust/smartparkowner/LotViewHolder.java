@@ -20,7 +20,6 @@ public class LotViewHolder extends RecyclerView.ViewHolder {
 
     private TextView nameTV;
     private TextView spotsTV;
-    private TextView maxTimeTV;
     private TextView hourlyChargeTV;
     private TextView accuracyTV;
     private ImageView QRImage;
@@ -30,7 +29,6 @@ public class LotViewHolder extends RecyclerView.ViewHolder {
         super(itemView);
         nameTV = (TextView) itemView.findViewById(R.id.name);
         spotsTV = (TextView) itemView.findViewById(R.id.spots);
-        maxTimeTV = (TextView) itemView.findViewById(R.id.max_time);
         hourlyChargeTV = (TextView) itemView.findViewById(R.id.hourly_charge);
         accuracyTV = (TextView) itemView.findViewById(R.id.accuracy);
         QRImage = (ImageView) itemView.findViewById(R.id.qr_code_image);
@@ -47,10 +45,6 @@ public class LotViewHolder extends RecyclerView.ViewHolder {
 
     public void setSpotsTVColor(Context ctx, int color) {
         spotsTV.setTextColor(ContextCompat.getColor(ctx, color));
-    }
-
-    public void setMaxTimeTV(String time) {
-        maxTimeTV.setText(time);
     }
 
     public void setHourlyChargeTV(String charge) {

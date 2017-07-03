@@ -12,6 +12,7 @@ import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.gson.Gson;
+import com.monsoonblessing.kevinfaust.smartparkowner.firebase.LotObject;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -23,8 +24,6 @@ public class UpdateLotActivity extends AppCompatActivity {
     EditText lotNameEditText;
     @BindView(R.id.max_spots_text)
     TextView maxSpotsEditText;
-    @BindView(R.id.max_time_text)
-    TextView maxTimeEditText;
     @BindView(R.id.hourly_price_text)
     TextView hourlyPriceEditText;
 
@@ -36,7 +35,8 @@ public class UpdateLotActivity extends AppCompatActivity {
 
     private ProgressDialog pd;
 
-    private Lot lot;
+    private LotObject lot;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -44,13 +44,12 @@ public class UpdateLotActivity extends AppCompatActivity {
         setContentView(R.layout.activity_update_lot);
         ButterKnife.bind(this);
 
-        lot = new Gson().fromJson(getIntent().getStringExtra("LotData"), Lot.class);
+        lot = new Gson().fromJson(getIntent().getStringExtra("LotData"), LotObject.class);
         mLotDatabaseKey = getIntent().getStringExtra("LotDatabaseKey");
 
         // update screen with pre-filled lot data
         lotNameEditText.setText(lot.getName());
         maxSpotsEditText.setText(String.valueOf(lot.getMaxSpots()));
-        maxTimeEditText.setText(String.valueOf(lot.getMaxTime()));
         hourlyPriceEditText.setText(String.valueOf(lot.getHourlyCharge()));
 
         mAuth = FirebaseAuth.getInstance();
@@ -72,11 +71,10 @@ public class UpdateLotActivity extends AppCompatActivity {
 
         String name = lotNameEditText.getText().toString();
         String spots = maxSpotsEditText.getText().toString();
-        String time = maxTimeEditText.getText().toString();
         String price = hourlyPriceEditText.getText().toString();
 
         // check if all fields are filled out
-        if (hasValidFrields(name, spots, time, price)) {
+        if (hasValidFrields(name, spots, price)) {
 
             pd.setMessage("Saving");
             pd.show();
@@ -89,7 +87,6 @@ public class UpdateLotActivity extends AppCompatActivity {
             mCurrUserParkingLotDatabaseRef.child("availableSpots").setValue(updated_spots);
 
             mCurrUserParkingLotDatabaseRef.child("hourlyCharge").setValue(Double.parseDouble(price));
-            mCurrUserParkingLotDatabaseRef.child("maxTime").setValue(Integer.parseInt(time));
 
             pd.dismiss();
             finish();
@@ -98,11 +95,11 @@ public class UpdateLotActivity extends AppCompatActivity {
     }
 
 
-    public boolean hasValidFrields(String name, String spots, String time, String price) {
+    public boolean hasValidFrields(String name, String spots, String price) {
 
         boolean hasValidFields = false;
 
-        if (!TextUtils.isEmpty(name) && !TextUtils.isEmpty(spots) && !TextUtils.isEmpty(time) && !TextUtils.isEmpty(price)) {
+        if (!TextUtils.isEmpty(name) && !TextUtils.isEmpty(spots) && !TextUtils.isEmpty(price)) {
             hasValidFields = true;
         } else {
             Toast.makeText(this, "Please fill out all fields", Toast.LENGTH_SHORT).show();

@@ -22,11 +22,10 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
 import com.google.firebase.storage.UploadTask;
-import com.monsoonblessing.kevinfaust.smartparkowner.Lot;
+import com.monsoonblessing.kevinfaust.smartparkowner.firebase.LotObject;
 import com.monsoonblessing.kevinfaust.smartparkowner.R;
 
 import net.glxn.qrgen.android.QRCode;
-import net.glxn.qrgen.core.scheme.VCard;
 
 import java.io.File;
 
@@ -44,8 +43,6 @@ public class AddParkingLotPopup extends DialogFragment {
     EditText lotNameTextView;
     @BindView(R.id.max_spots_text)
     TextView maxSpotsTextView;
-    @BindView(R.id.max_time_text)
-    TextView maxTimeTextView;
     @BindView(R.id.hourly_price_text)
     TextView hourlyPriceTextView;
 
@@ -85,11 +82,10 @@ public class AddParkingLotPopup extends DialogFragment {
 
         final String name = lotNameTextView.getText().toString();
         final String spots = maxSpotsTextView.getText().toString();
-        final String time = maxTimeTextView.getText().toString();
         final String price = hourlyPriceTextView.getText().toString();
 
         // check if all fields are filled out
-        if (hasValidFrields(name, spots, time, price)) {
+        if (hasValidFrields(name, spots, price)) {
 
             pd.setMessage("Setting Up");
             pd.show();
@@ -112,11 +108,10 @@ public class AddParkingLotPopup extends DialogFragment {
                     @SuppressWarnings("VisibleForTests") Uri downloadUrl = taskSnapshot.getDownloadUrl();
 
                     // create new lot
-                    Lot lot = new Lot(
+                    LotObject lot = new LotObject(
                             name,
                             Integer.parseInt(spots),
                             Integer.parseInt(spots),
-                            Integer.parseInt(time),
                             Double.parseDouble(price),
                             downloadUrl.toString()
                     );
@@ -143,11 +138,11 @@ public class AddParkingLotPopup extends DialogFragment {
     }
 
 
-    public boolean hasValidFrields(String name, String spots, String time, String price) {
+    public boolean hasValidFrields(String name, String spots, String price) {
 
         boolean hasValidFields = false;
 
-        if (!TextUtils.isEmpty(name) && !TextUtils.isEmpty(spots) && !TextUtils.isEmpty(time) && !TextUtils.isEmpty(price)) {
+        if (!TextUtils.isEmpty(name) && !TextUtils.isEmpty(spots) && !TextUtils.isEmpty(price)) {
             hasValidFields = true;
         } else {
             Toast.makeText(getActivity(), "Please fill out all fields", Toast.LENGTH_SHORT).show();

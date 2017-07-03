@@ -10,6 +10,9 @@ import com.firebase.ui.database.FirebaseRecyclerAdapter;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.monsoonblessing.kevinfaust.smartparkowner.firebase.VehicleObject;
+
+import java.util.Calendar;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -21,9 +24,6 @@ public class VehicleLogActivity extends AppCompatActivity {
 
     private FirebaseAuth mAuth;
 
-    private DatabaseReference currentParkingLotRef;
-
-    private FirebaseRecyclerAdapter firebaseRecyclerAdapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -41,28 +41,23 @@ public class VehicleLogActivity extends AppCompatActivity {
         String user_id = mAuth.getCurrentUser().getUid();
         // user's database
         DatabaseReference userDatabaseRef = db.child(getString(R.string.UserData)).child(user_id);
-        currentParkingLotRef = userDatabaseRef.child(getString(R.string.ParkingLots)).child(lotID).child("VehicleLog");
+        DatabaseReference vehicleLogRef = userDatabaseRef.child(getString(R.string.ParkingLots)).child(lotID).child("VehicleLog");
 
 
         recyclerView.setHasFixedSize(false);
-        recyclerView.setLayoutManager(new LinearLayoutManager(this));
-        firebaseRecyclerAdapter = new FirebaseRecyclerAdapter<Vehicle, VehicleLogViewHolder>(Vehicle.class, R.layout.recycler_vehicle_log_row, VehicleLogViewHolder.class, currentParkingLotRef) {
+
+        LinearLayoutManager linearLayoutManager = new LinearLayoutManager(this);
+        linearLayoutManager.setReverseLayout(true);
+        linearLayoutManager.setStackFromEnd(true);
+
+        recyclerView.setLayoutManager(linearLayoutManager);
+        FirebaseRecyclerAdapter firebaseRecyclerAdapter = new FirebaseRecyclerAdapter<VehicleObject, VehicleLogViewHolder>(VehicleObject.class, R.layout.recycler_vehicle_log_row, VehicleLogViewHolder.class, vehicleLogRef) {
             @Override
-            protected void populateViewHolder(VehicleLogViewHolder viewHolder, Vehicle vehicle, int position) {
+            protected void populateViewHolder(VehicleLogViewHolder viewHolder, VehicleObject vehicle, int position) {
 
                 viewHolder.setLicense(vehicle.getPlateNumber());
-                viewHolder.setAccuracy(String.format("%.2f", vehicle.getOcrAccuracy()));
-
-                viewHolder.setAccuracy("Accuracy: " + String.format("%.2f", vehicle.getOcrAccuracy()) +
-                        "%");
-
-                viewHolder.setInTime(String.valueOf(vehicle.getTimeIn()));
-
-                if (vehicle.getTimeOut() == null) {
-                    viewHolder.setOutTime("Still inside lot");
-                } else {
-                    viewHolder.setOutTime(String.valueOf(vehicle.getTimeOut()));
-                }
+                viewHolder.setTotTimeTV(vehicle.getTimeIn(), vehicle.getTimeOut());
+                viewHolder.setAccuracy(String.format("Accuracy: %.2f%%", vehicle.getOcrAccuracy()));
             }
         };
         recyclerView.setAdapter(firebaseRecyclerAdapter);

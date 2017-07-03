@@ -25,6 +25,7 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 import com.google.gson.Gson;
 import com.monsoonblessing.kevinfaust.smartparkowner.Popups.AddParkingLotPopup;
+import com.monsoonblessing.kevinfaust.smartparkowner.firebase.LotObject;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -87,9 +88,9 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
         recyclerView.setHasFixedSize(false);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
-        firebaseRecyclerAdapter = new FirebaseRecyclerAdapter<Lot, LotViewHolder>(Lot.class, R.layout.recycler_lot_row, LotViewHolder.class, mUserParkingLotsDatabaseRef) {
+        firebaseRecyclerAdapter = new FirebaseRecyclerAdapter<LotObject, LotViewHolder>(LotObject.class, R.layout.recycler_lot_row, LotViewHolder.class, mUserParkingLotsDatabaseRef) {
             @Override
-            public void populateViewHolder(LotViewHolder lotViewHolder, Lot lot, final int position) {
+            public void populateViewHolder(LotViewHolder lotViewHolder, LotObject lot, final int position) {
 
                 lotViewHolder.viewLogBtn.setOnClickListener(new View.OnClickListener() {
                     @Override
@@ -119,8 +120,6 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                     lotViewHolder.setSpotsTVColor(MainActivity.this, R.color.md_red_500);
                 }
 
-                lotViewHolder.setMaxTimeTV("Max time: " + lot.getMaxTime() + " hrs");
-
                 lotViewHolder.setHourlyChargeTV("Hourly charge: $" + String.format("%.2f", lot.getHourlyCharge()));
 
                 lotViewHolder.setQRImage(MainActivity.this, lot.getQrCodeUrl());
@@ -144,7 +143,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                 ref.addListenerForSingleValueEvent(new ValueEventListener() {
                     @Override
                     public void onDataChange(DataSnapshot dataSnapshot) {
-                        Lot lot = dataSnapshot.getValue(Lot.class);
+                        LotObject lot = dataSnapshot.getValue(LotObject.class);
                         String lot_stringified = new Gson().toJson(lot);
                         Intent intent = new Intent(MainActivity.this, UpdateLotActivity.class);
                         intent.putExtra("LotDatabaseKey", ref.getKey());

@@ -12,11 +12,16 @@
         android:background="@drawable/dark_gradient"
         android:orientation="vertical">
 
+        <ImageView
+            android:layout_gravity="center_horizontal"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:src="@drawable/parking_lot"/>
+
         <TextView
             android:gravity="center"
             android:textSize="20sp"
-            android:layout_marginBottom="5dp"
-            android:layout_marginTop="5dp"
+            android:layout_marginBottom="15dp"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="Add New Lot"
@@ -57,19 +62,6 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:hint="Hourly Price (dollars)"
-            android:inputType="numberDecimal"
-            android:maxLines="1"
-            android:padding="10dp"
-            android:textColor="@color/md_white_1000"
-            android:textColorHint="@color/md_white_1000"/>
-
-        <EditText
-            android:layout_marginBottom="5dp"
-            android:layout_marginTop="5dp"
-            android:id="@+id/max_time_text"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:hint="Maximum Time (hrs)"
             android:inputType="numberDecimal"
             android:maxLines="1"
             android:padding="10dp"
